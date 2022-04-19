@@ -1,0 +1,9 @@
+displayName = [c/e71224:Bandito's Soulsverse Mod]
+author = BanditoHayden
+version = 0.3.1
+modReferences = WebmilioCommons
+homepage = https://discord.gg/dNunYXmRbn
+hideCode = true
+hideResources = false
+includeSource = false
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
