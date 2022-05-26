@@ -1,19 +1,24 @@
 Bandito's Soulsverse Mod adds content from the Dark Souls series into Terraria.
-
+----------------------------------
 Im looking for spriters/coders, join the discord!
-
+----------------------------------
 Currently it adds:
-3 Weapons
-1 Shield
-1 Armor Set
-0 Accessories
+7 Weapons
+2 Armor Sets
+----------------------------------
+Changelogs:
+0.5.2
+Added Halo Scythe
+Added Black Knife
 
-Changelogs are on the discord
+Join the discord for more detailed changelogs
+----------------------------------
 Spriters
 Madd (Weapons)
+Cool_Dude2 (Weapons)
 Articulo (Armor)
+----------------------------------
 Coders
-Requires Webmilio's Commons Library 
-(Enable this before loading the mod)
-https://steamcommunity.com/sharedfiles/filedetails/?id=2596745437
+Hayden (Me)
+----------------------------------
 https://discord.gg/dNunYXmRbn
