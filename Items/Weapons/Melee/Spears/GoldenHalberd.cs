@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SoulsMod.Buffs;
 using SoulsMod.Buffs.GoldenVow;
 using SoulsMod.Projectiles.Spears;
+using SoulsMod.Rarities;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -16,7 +17,7 @@ namespace SoulsMod.Items.Weapons.Melee.Spears
         public override void SetStaticDefaults()
         {
 
-            Tooltip.SetDefault("Hold UP to use weapon art\n[c/FFD700:Golden Vow]\nRight click to use special\n[c/FFD700:...]");
+            Tooltip.SetDefault("Right Click to use weapon art\n[c/FFD700:Golden Vow]");
 
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -24,18 +25,24 @@ namespace SoulsMod.Items.Weapons.Melee.Spears
 
         public override void SetDefaults()
         {
-            Item.rare = ItemRarityID.Pink;
+            // Common Properties
+           // Item.rare = ModContent.RarityType<testrarity>();
+            Item.rare = 2;
             Item.value = Item.sellPrice(silver: 10);
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useAnimation = 12;
-            Item.useTime = 18;
-            Item.UseSound = SoundID.Item71;
-            Item.autoReuse = true;
-            Item.damage = 16;
-            Item.knockBack = 6.5f;
+            Item.width = 60;
+            Item.height = 60;
             Item.noUseGraphic = true;
+            Item.UseSound = SoundID.Item71;
+            // Use Properties
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.autoReuse = true;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            // Weapon Properties
+            Item.damage = 10;
+            Item.knockBack = 6.6f;
             Item.DamageType = DamageClass.Melee;
-            Item.knockBack = 6.5f;
+            // Projectile Properties
             Item.shoot = ModContent.ProjectileType<GoldenHalberdProjectile>();
             Item.shootSpeed = 3.7f;
         }
@@ -43,15 +50,14 @@ namespace SoulsMod.Items.Weapons.Melee.Spears
         {
             return true;
         }
-        int dusttype;
        
         public override bool CanUseItem(Player player)
         {
-            if (player.controlUp)
+            if (player.altFunctionUse == 2)
             {
                 Item.useStyle = ItemUseStyleID.Shoot;
-                Item.useTime = 50;
-                Item.useAnimation = 50;
+                Item.useTime = 60;
+                Item.useAnimation = 60;
                 Item.damage = 16;
                 Item.shootSpeed = 3.4f;
                 Item.shoot = ModContent.ProjectileType<GoldenHalberdProjectile>();
@@ -64,20 +70,22 @@ namespace SoulsMod.Items.Weapons.Melee.Spears
             else
             {
                 Item.useStyle = ItemUseStyleID.Shoot;
-                Item.useTime = 30;
-                Item.useAnimation = 30;
+                Item.useTime = 40;
+                Item.useAnimation = 40;
                 Item.damage = 16;
-                Item.shootSpeed = 3.4f;
+                Item.shootSpeed = 5.4f;
                 Item.shoot = ModContent.ProjectileType<GoldenHalberdProjectile>();
                 Item.knockBack = 6;
             }
             return player.ownedProjectileCounts[Item.shoot] < 1;
         }
+       
+
         public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                if (player.controlUp && !player.HasBuff<WeaponArtCooldown>())
+                if (player.altFunctionUse == 2 && !player.HasBuff<WeaponArtCooldown>())
                 {
                     player.AddBuff(Item.buffType, 3600, true);
                     player.AddBuff(ModContent.BuffType<GoldenVow>(), 600, true);
